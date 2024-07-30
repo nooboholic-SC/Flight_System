@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flight Status</title>
+    <style>
+        /* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("src/main/resources/static/images/img.jpg");
+}
+
+/* Container Styling */
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px; /* Margin around the container */
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+h1 {
+    color: #333;
+    text-align: center;
+    margin: 0 0 20px 0; /* Margin bottom */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form elements */
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Space between label and input field */
+}
+
+input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px; /* Space below each input field */
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Link Styling */
+a {
+    color: #007BFF;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Flight Status</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Flight Number</th>
+            <th>Status</th>
+            <th>Gate</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="flight : ${flights}">
+            <td th:text="${flight.number}"></td>
+            <td th:text="${flight.status}"></td>
+            <td th:text="${flight.gate}"></td>
+            <td>
+                <a th:href="@{/delete(id=${flight.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/add">Add New Flight</a>
+</div>
+</body>
+</html>
